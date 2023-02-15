@@ -5,15 +5,15 @@ import sys
 import subprocess
 import shutil
 
-SAVING_FRAMES_PER_SECOND = 20
-COMPRESSION = 5
+SAVING_FRAMES_PER_SECOND = 30
+COMPRESSION = 10
 
 
 def main():
     video_file = sys.argv[1]
     carver(video_file, SAVING_FRAMES_PER_SECOND)
     conventers(COMPRESSION)
-    subprocess.check_output(["/usr/bin/ffmpeg", "-framerate", str(SAVING_FRAMES_PER_SECOND), "-pattern_type", "glob", "-i", f"{os.getcwd()}/processed/*.jpg", "out.mp4"])
+    subprocess.check_output(["C:\\Users\\EgrZver\\Documents\\ffmpeg-5.1.2-full_build\\bin\\ffmpeg.exe", "-framerate", str(SAVING_FRAMES_PER_SECOND), "-i", f"{os.getcwd()}/processed/%07d.jpg", f"{video_file}-processed.mp4"])
     shutil.rmtree("not_processed/")
     shutil.rmtree('processed/')
     
